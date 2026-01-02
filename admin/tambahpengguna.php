@@ -62,7 +62,7 @@
                     try {
 
                         // Cek username apakah sudah ada
-                        $cek = $pdo->prepare("SELECT username FROM tbl_pengguna WHERE username = ?");
+                        $cek = $pdo->prepare("SELECT username FROM pengguna WHERE username = ?");
                         $cek->execute([$user]);
 
                         if ($cek->rowCount() > 0) {
@@ -71,8 +71,8 @@
                                 </div>';
                         } else {
 
-                            $simpan = $pdo->prepare("INSERT INTO tbl_pengguna 
-                                (nama, username, password, level, create_at, update_at) 
+                            $simpan = $pdo->prepare("INSERT INTO pengguna 
+                                (nama, username, password, level, created_at, update_at) 
                                 VALUES (?, ?, MD5(?), ?, NOW(), NOW())");
 
                             $simpan->execute([$nama, $user, $pass, $level]);
@@ -93,5 +93,6 @@
         </div>
     </div>
 </div>
+
 
 <?php include 'footer.php'; ?>
